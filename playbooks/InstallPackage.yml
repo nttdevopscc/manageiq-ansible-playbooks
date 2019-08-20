@@ -1,0 +1,19 @@
+---
+- name: Install Package
+  hosts: all
+  vars:
+  - package_name: httpd
+
+  tasks:
+  - name: fetch mirror config
+    get_url:
+      url: http://workstation.example.com/pub/mirror.repo
+      dest: /etc/yum.repos.d/mirror.repo
+
+  - name: remove old mirror config
+    file:
+      path: /etc/yum.repos.d/rhel7.repo
+      state: absent
+
+  - name: install package {{ package_name }}
+    yum: name={{ package_name }} state=present

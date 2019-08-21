@@ -2,11 +2,20 @@
 - name: get next free IP
   hosts: all
   vars:
-    phpipam_user: admin
-    phpipam_password: "r3dh4t1!"
-    phpipam_url: "https://ipam.example.com/api"
+  - phpipam_user: admin
+  - phpipam_password: "r3dh4t1!"
+  - phpipam_url: "https://ipam.example.com/api"
 
   tasks:
+  - name: print debug variables
+    debug:
+      var: "{{ item }}"
+      verbosity: 1
+    with_items:
+    - phpipam_user
+    - phpipam_password
+    - phpipam_url
+ 
   - name: log into phpIPAM
     uri:
       url: "{{ phpipam_url }}/ansible/user/"
@@ -15,18 +24,29 @@
       method: POST
       status_code: 200
       validate_certs: no
+      force_basic_auth: yes
     register: login
+
+  - name: dump login result
+    debug:
+      var: login
+      verbosity: 1
 
   - name: get next free IP
     uri:
       url: "{{ phpipam_url }}/ansible/subnets/8/first_free/"
       headers:
-        token: "{{ login.json.auth_token }}"
+        token: "{{ login.json.data.token }}"
       status_code: 200
       validate_certs: no
     register: next_ip
 
   - name: print next IP
     debug:
-      var: next_ip
+      var: next_ip.json.data
+      verbosity: 1
 
+  - name: save IP for later use in CloudForms
+    set_stat:
+      data:
+        ip_addr: "{{ next_ip.json.data }}"

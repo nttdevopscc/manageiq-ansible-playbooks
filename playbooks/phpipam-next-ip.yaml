@@ -34,7 +34,7 @@
 
   - name: get next free IP
     uri:
-      url: "{{ phpipam_url }}/ansible/subnets/7/first_free/"
+      url: "{{ phpipam_url }}/ansible/subnets/8/first_free/"
       headers:
         token: "{{ login.json.data.token }}"
       status_code: 200

@@ -47,6 +47,6 @@
       verbosity: 1
 
   - name: save IP for later use in CloudForms
-    set_stat:
+    set_stats:
       data:
         ip_addr: "{{ next_ip.json.data }}"

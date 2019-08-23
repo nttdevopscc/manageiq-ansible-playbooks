@@ -48,11 +48,11 @@
       method: POST
       validate_certs: no
       body_format: json
-      body: "
+      body: '
         {
             "hostname": "{{ hostname }}",
             "ip": "{{ ip_addr }}",
             "type": "7",
             "description": null,
             "sections": "3"
-        }"
+        }'

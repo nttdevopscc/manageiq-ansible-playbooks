@@ -44,7 +44,7 @@
       url: "{{ phpipam_url }}/ansible/devices/"
       headers:
         token: "{{ login.json.data.token }}"
-      status_code: 200
+      status_code: 201
       method: POST
       validate_certs: no
       body_format: json

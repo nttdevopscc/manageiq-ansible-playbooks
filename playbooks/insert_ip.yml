@@ -1,6 +1,9 @@
 ---
-- name: Insert a new IP into State machine using manageiq-vmdb
-  hosts: all
+- name: manageiq-vmdb role for inserting network values into a state machine
+  hosts: localhost
+  connection: local
+  vars:
+  - manageiq_validate_certs: false
   
   roles:
   - manageiq-core.manageiq-vmdb
@@ -16,3 +19,8 @@
           ip_addr: "{{ ip_addr }}"
           subnet_mask: "{{ netmask | default(255.255.255.0) }}"
           gateway: "{{ gateway | default(192.168.0.2) }}"
+    register: ipaddr
+          
+  - name: Print the result
+    debug:
+      msg: "The IP inserted is {{ ipaddr }}"

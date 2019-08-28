@@ -14,5 +14,4 @@
         options:
           addr_mode: ["static", "Static"]
           ip_addr: "{{ ip_addr }}"
-          subnet_mask: "{{ netmask }}"
-          gateway: "{{ gateway }}"
+          subnet_mask: "{{ netmask | default(255.255.255.0) }}"

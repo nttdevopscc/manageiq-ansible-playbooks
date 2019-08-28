@@ -1,4 +1,7 @@
----  
+---
+- name: Insert a new IP into State machine using manageiq-vmdb
+  hosts: all
+  
   roles:
   - manageiq-core.manageiq-vmdb
 

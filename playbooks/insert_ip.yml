@@ -1,0 +1,14 @@
+  roles:
+  - manageiq-core.manageiq-vmdb
+
+  tasks:   
+  - name: Update task with new IP information
+    manageiq_vmdb:
+      href: "{{ manageiq.request_task }}"
+      action: edit
+      data:
+        options:
+          addr_mode: ["static", "Static"]
+          ip_addr: "{{ ip_addr }}"
+          subnet_mask: "{{ netmask }}"
+          gateway: "{{ gateway }}"

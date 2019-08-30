@@ -19,7 +19,7 @@
       action: edit
       data:
         options:
-          vm_target_name: myvm002
+          vm_target_name: myvm003
     register: name
           
   - name: Print the result

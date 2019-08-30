@@ -9,15 +9,17 @@
   - manageiq-core.manageiq-vmdb
 
   tasks:   
+      
   - name: "Update task with new VM Name information"
     manageiq_vmdb:
       href: "{{ manageiq.request_task }}"
       action: edit
       data:
         options:
+          vm_name: myvm001
           vm_target_name: myvm001
     register: name
           
   - name: Print the result
     debug:
-      msg: "The new VM name is {{ name.vm_target_name }}"
+      msg: "The new VM name is {{ name }}"

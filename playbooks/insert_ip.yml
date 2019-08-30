@@ -1,0 +1,26 @@
+---
+- name: "manageiq-vmdb role for inserting network values into a state machine"
+  hosts: localhost
+  connection: local
+  vars:
+  - manageiq_validate_certs: false
+  
+  roles:
+  - manageiq-core.manageiq-vmdb
+
+  tasks:   
+  - name: "Update task with new IP information"
+    manageiq_vmdb:
+      href: "{{ manageiq.request_task }}"
+      action: edit
+      data:
+        options:
+          addr_mode: ["static", "Static"]
+          ip_addr: "{{ ip_addr }}"
+          subnet_mask: "255.255.255.0"
+          gateway: "192.168.0.2"
+    register: ipaddr
+          
+  - name: Print the result
+    debug:
+      msg: "The IP inserted is {{ ipaddr }}"

@@ -15,7 +15,7 @@
       action: edit
       data:
         options:
-          vm_name: "myvm001"
+          vm_name: myvm001
     register: name
           
   - name: Print the result

@@ -18,8 +18,8 @@
         options:
           vm_name: myvm001
           vm_target_name: myvm001
-    register: name
+    register: vmname
           
   - name: Print the result
     debug:
-      msg: "The new VM name is {{ name }}"
+      msg: "The new VM name is {{ vmname.vm_target_name }}"

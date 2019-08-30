@@ -8,7 +8,12 @@
   roles:
   - manageiq-core.manageiq-vmdb
 
-  tasks:   
+  tasks:
+  - name: Get a vmdb request
+    manageiq_vmdb:
+      href: "{{ manageiq.request_task }}"
+    register: service
+    
   - name: "Update task with new IP information"
     manageiq_vmdb:
       href: "{{ manageiq.request_task }}"

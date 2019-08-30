@@ -1,5 +1,5 @@
 ---
-- name: "manageiq-vmdb role for inserting network values into a state machine"
+- name: "manageiq-vmdb role for inserting new vm name into the state machine"
   hosts: localhost
   connection: local
   vars:

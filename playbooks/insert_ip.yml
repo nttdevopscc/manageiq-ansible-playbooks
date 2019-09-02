@@ -22,7 +22,7 @@
         options:
           addr_mode: ["static", "Static"]
           ip_addr: "{{ ip_addr }}"
-          subnet_mask: "255.255.255.0"
+          subnet_mask: "24"
           gateway: "192.168.0.2"
     register: ipaddr
           

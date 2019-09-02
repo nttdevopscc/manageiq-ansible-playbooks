@@ -63,8 +63,8 @@
       body_format: json
       body: '
         {
-            "hostname": "{{ service.hostname }}",
-            "ip": "{{ service.ip_addr }}",
+            "hostname": "{{ ansible_stats_hostname }}",
+            "ip": "{{ ansible_stats_ip_addr }}",
             "type": "7",
             "description": null,
             "sections": "3"

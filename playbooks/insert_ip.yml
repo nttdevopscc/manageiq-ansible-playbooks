@@ -27,7 +27,7 @@
           gateway: "192.168.0.2"
     register: ipaddr
 
-  - name: save IP for later use in CloudForms
+  - name: "Save hostname for later use in Playbooks"
     set_stats:
       data:
         hostname: "{{ hostname }}"

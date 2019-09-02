@@ -22,10 +22,13 @@
         options:
           addr_mode: ["static", "Static"]
           ip_addr: "{{ ip_addr }}"
+          hostname: "{{ hostname }}"
           subnet_mask: "24"
           gateway: "192.168.0.2"
     register: ipaddr
+
+  - name: save IP for later use in CloudForms
+    set_stats:
+      data:
+        hostname: "{{ hostname }}"
           
-  - name: Print the result
-    debug:
-      msg: "The IP inserted is {{ ipaddr }}"

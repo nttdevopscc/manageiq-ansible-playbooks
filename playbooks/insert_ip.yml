@@ -20,11 +20,11 @@
       action: edit
       data:
         options:
-          addr_mode: ["static", "Static"]
+          #addr_mode: ["static", "Static"]
           ip_addr: "{{ ip_addr }}"
           hostname: "{{ vm_target_hostname }}"
-          subnet_mask: "24"
-          gateway: "192.168.0.2"
+          #subnet_mask: "24"
+          #gateway: "192.168.0.2"
     register: ipaddr
 
   - name: "Save hostname for later use in Playbooks"

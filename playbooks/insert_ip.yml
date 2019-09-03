@@ -13,11 +13,7 @@
     manageiq_vmdb:
       href: "{{ manageiq.request_task }}"
     register: service
-    
-  - name: Print the service details
-    debug:
-      msg: "Services object is {{ service }}"
-    
+
   - name: "Update task with new IP information"
     manageiq_vmdb:
       href: "{{ manageiq.request_task }}"

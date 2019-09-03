@@ -22,7 +22,8 @@
         options:
           #addr_mode: ["static", "Static"]
           ip_addr: "{{ ip_addr }}"
-          hostname: "{{ vm_target_hostname }}"
+          hostname: "{{ vm_target_name }}"
+          #hostname: "{{ vm_target_hostname }}"
           #subnet_mask: "24"
           #gateway: "192.168.0.2"
     register: ipaddr

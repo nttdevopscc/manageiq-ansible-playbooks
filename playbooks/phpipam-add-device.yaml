@@ -54,5 +54,6 @@
             "ip": "{{ ip_addr }}",
             "type": "7",
             "description": null,
-            "sections": "3"
+            "section": "3",
+            "subnet": "8"
         }'

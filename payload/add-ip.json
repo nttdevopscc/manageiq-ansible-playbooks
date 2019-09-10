@@ -1,0 +1,37 @@
+{
+    "code": 200,
+    "success": true,
+    "data": {
+        "id": "11",
+        "subnetId": "8",
+        "ip": "192.168.0.113",
+        "is_gateway": null,
+        "description": null,
+        "hostname": "cjung001",
+        "mac": null,
+        "owner": null,
+        "tag": "2",
+        "deviceId": "1",
+        "location": null,
+        "port": null,
+        "note": null,
+        "lastSeen": null,
+        "excludePing": "0",
+        "PTRignore": "0",
+        "PTR": "0",
+        "firewallAddressObject": null,
+        "editDate": null,
+        "customer_id": null
+    },
+    "time": 0.007
+}
+
+
+
+    "data": {
+        "subnetId": "8",
+        "ip": "192.168.0.114",
+        "hostname": "cjung002",
+        "tag": "2",
+        "deviceId": "1"
+    }

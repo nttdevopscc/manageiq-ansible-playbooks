@@ -54,6 +54,28 @@
             "ip": "{{ ip_addr }}",
             "type": "7",
             "description": null,
-            "section": "3",
-            "subnet": "8"
         }'
+    register: device
+
+  - name: dump device details
+    debug:
+      var: device
+      verbosity: 1
+
+  - name: register IP address
+    uri:
+      url: "{{ phpipam_url }}/ansible/devices/"
+      headers:
+        token: "{{ login.json.data.token }}"
+      status_code: 201
+      method: POST
+      validate_certs: no
+      body_format: json
+      body: '
+      {
+        "ip": "{{ ip_addr }}",
+        "hostname": "{{ hostname }}",
+        "switch", null,
+        "deviceId": "{{ device.json.id }}"
+    }'
+    

@@ -1,0 +1,15 @@
+---
+- name: This playbook will register the system on Satellite
+  hosts: all
+  vars:
+  - satserver: "sat.example.com"
+  - activationkey: 
+
+  tasks:
+  - name: Register with activation key
+    redhat_subscription:
+      state: present
+      server_hostname: "{{ satserver }}"
+      autosubscribe: true
+      activationkey: "{{ activationkey }}"
+      server_insecure: disable

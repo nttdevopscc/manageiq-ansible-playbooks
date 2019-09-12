@@ -54,6 +54,8 @@
             "ip": "{{ ip_addr }}",
             "type": "7",
             "description": null,
+            "section": "3",
+            "subnet": "8"
         }'
     register: device
 

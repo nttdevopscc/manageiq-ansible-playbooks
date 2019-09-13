@@ -53,7 +53,7 @@
             "hostname": "{{ hostname }}",
             "ip": "{{ ip_addr }}",
             "type": "7",
-            "description": null,
+            "description": null
         }'
     register: device
 

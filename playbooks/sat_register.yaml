@@ -9,7 +9,7 @@
   tasks:
   - name: install Katello certificates
     yum:
-      name: https://"{{ satserver }}"/pub/katello-ca-consumer-latest.noarch.rpm
+      name: http://"{{ satserver }}"/pub/katello-ca-consumer-latest.noarch.rpm
       state: present
 
   - name: Register with activation key

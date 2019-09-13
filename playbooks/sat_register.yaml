@@ -3,13 +3,14 @@
   hosts: all
   vars:
   - satserver: "sat.example.com"
-  - activationkey: 
+  - activationkey: "ak-Reg_To_Production"
+  - organization: "Example_com"
 
   tasks:
   - name: Register with activation key
     redhat_subscription:
       state: present
       server_hostname: "{{ satserver }}"
-      autosubscribe: true
+      org_id: "{{ organization }}"
       activationkey: "{{ activationkey }}"
       server_insecure: disable

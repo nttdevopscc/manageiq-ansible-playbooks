@@ -9,16 +9,16 @@
   - manageiq-core.manageiq-vmdb
 
   tasks:   
-  - name: Get a vmdb request
+  - name: "Get a vmdb request"
     manageiq_vmdb:
       href: "{{ manageiq.request_task }}"
     register: vmrequest
           
-  - name: Print the result
+  - name: "Print the vmdb request"
     debug:
       msg: "{{ vmrequest.name }}"
 
-  - name: save IP for later use in CloudForms
+  - name: "Save vmname for registering against Satellite"
     set_stats:
       data:
         vmname: "{{ vmrequest.name }}"

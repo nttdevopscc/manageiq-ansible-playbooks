@@ -16,6 +16,7 @@
           
   - name: "Print the vmdb request"
     debug: msg="{{ vmrequest }}"
+    debug: msg="{{ vmrequest.json.resources[0].vm_target_name }}"
 
   #- name: "Save vmname for registering against Satellite"
   #  set_stats:

@@ -15,7 +15,7 @@
     register: vmrequest
           
   - name: "Print the vmdb request"
-    debug: var=vmrequest.stdout_lines
+    debug: msg="{{ vmrequest }}""
 
   #- name: "Save vmname for registering against Satellite"
   #  set_stats:

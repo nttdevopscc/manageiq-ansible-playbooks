@@ -16,7 +16,7 @@
           
   - name: Print the result
     debug:
-      msg: "The new VM name is {{ vmrequest.name }}"
+      msg: "{{ vmrequest.name }}"
 
   - name: save IP for later use in CloudForms
     set_stats:

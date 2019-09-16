@@ -1,0 +1,24 @@
+---
+- name: "manageiq-vmdb role for inserting new vm name into the state machine"
+  hosts: localhost
+  connection: local
+  vars:
+  - manageiq_validate_certs: false
+  
+  roles:
+  - manageiq-core.manageiq-vmdb
+
+  tasks:   
+  - name: Get a vmdb request
+    manageiq_vmdb:
+      href: "{{ manageiq.request_task }}"
+    register: vmrequest
+          
+  - name: Print the result
+    debug:
+      msg: "The new VM name is {{ vmrequest.name }}"
+
+  - name: save IP for later use in CloudForms
+    set_stats:
+      data:
+        vmname: "{{ vmrequest.name }}"

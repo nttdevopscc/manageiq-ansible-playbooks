@@ -16,9 +16,9 @@
           
   - name: "Print the vmdb request"
     debug:
-      msg: "{{ vmrequest.name }}"
+      msg: "{{ vmrequest }}"
 
-  - name: "Save vmname for registering against Satellite"
-    set_stats:
-      data:
-        vmname: "{{ vmrequest.name }}"
+  #- name: "Save vmname for registering against Satellite"
+  #  set_stats:
+  #    data:
+   #     vmname: "{{ vmrequest.name }}"

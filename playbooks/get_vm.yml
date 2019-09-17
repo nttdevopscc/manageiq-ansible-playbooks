@@ -26,7 +26,7 @@
         attribute: "ansible_stats_vmname"
         value: vmrequest.options.vm_target_name
    
-  - name: Check whether a "task_id" state var exists (state_var_exists)
+  - name: Check whether a "ansible_stats_vmname" state var exists (state_var_exists)
     manageiq_automate:
       workspace: "{{ workspace }}"
       state_var_exists:

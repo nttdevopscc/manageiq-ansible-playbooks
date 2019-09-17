@@ -28,7 +28,7 @@
     register: ansible_stats_vmname
 
   - name: "Print the vmdb request"
-    debug: msg="Result:{{ ansible_stats_vmname.value }}"
+    debug: msg="Result:{{ ansible_stats_vmname }}"
 
    
   #- name: Check whether a "ansible_stats_vmname" state var exists (state_var_exists)

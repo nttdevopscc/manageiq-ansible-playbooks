@@ -27,8 +27,8 @@
         value: "{{ vmrequest.options.vm_target_name }}"
     register: ansible_stats_vmname
 
-  - debug: 
-    msg: "Result:{{ ansible_stats_vmname.value }}"
+  - name: "Print the vmdb request"
+    debug: msg="Result:{{ ansible_stats_vmname.value }}"
 
    
   #- name: Check whether a "ansible_stats_vmname" state var exists (state_var_exists)

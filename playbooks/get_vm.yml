@@ -18,13 +18,14 @@
   - name: "Print the vmdb request"
     #debug: msg="{{ vmrequest }}"
     debug: var=vmrequest.options.vm_target_name
+    vmname: vmrequest.options.vm_target_name
 
   - name: "Set a State Var"
     manageiq_automate:
       workspace: "{{ workspace }}"
       set_state_var:
         attribute: "ansible_stats_vmname"
-        value: vmrequest.options.vm_target_name
+        value: "{{ vmname }}"
    
   #- name: "Save vmname for registering against Satellite"
   #  set_stats:

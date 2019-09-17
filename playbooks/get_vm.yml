@@ -7,6 +7,7 @@
   
   roles:
   - manageiq-core.manageiq-vmdb
+  - manageiq-core.manageiq-automate
 
   tasks:   
   - name: "Get a vmdb request"
@@ -15,11 +16,16 @@
     register: vmrequest
           
   - name: "Print the vmdb request"
-    debug: msg="{{ vmrequest }}"
+    #debug: msg="{{ vmrequest }}"
     debug: var=vmrequest.options.vm_target_name
-    #debug: msg="{{ (vmrequest[vm_target_name] }}"
-    #debug: msg="{{ (vmrequest | from_json).options.vm_target_name }}"
 
+  - name: "Set a State Var"
+    manageiq_automate:
+      workspace: "{{ workspace }}"
+        set_state_var:
+          attribute: "vmname"
+          value: "vmrequest.options.vm_target_name"
+      register: workspace
   #- name: "Save vmname for registering against Satellite"
   #  set_stats:
   #    data:

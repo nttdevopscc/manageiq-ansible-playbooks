@@ -24,7 +24,7 @@
       workspace: "{{ workspace }}"
       set_state_var:
         attribute: "vmname"
-        value: "vmrequest.options.vm_target_name"
+        value: vmrequest.options.vm_target_name
    
   #- name: "Save vmname for registering against Satellite"
   #  set_stats:

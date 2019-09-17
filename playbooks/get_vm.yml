@@ -24,7 +24,7 @@
       workspace: "{{ workspace }}"
       set_state_var:
         attribute: "ansible_stats_vmname"
-        value: vmrequest.options.vm_target_name
+        value: "{{ vmrequest.options.vm_target_name }}"
    
   - name: Check whether a "ansible_stats_vmname" state var exists (state_var_exists)
     manageiq_automate:

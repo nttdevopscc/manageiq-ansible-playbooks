@@ -32,4 +32,5 @@
       state_var_exists:
         attribute: "ansible_stats_vmname"
       register: state_var_exists
-    - debug: msg="Result:{{ state_var_exists.value }}"
+      
+  - debug: msg="Result:{{ state_var_exists.value }}"

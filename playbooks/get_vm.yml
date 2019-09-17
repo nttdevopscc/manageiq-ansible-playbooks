@@ -26,7 +26,10 @@
         attribute: "ansible_stats_vmname"
         value: vmrequest.options.vm_target_name
    
-  #- name: "Save vmname for registering against Satellite"
-  #  set_stats:
-  #    data:
-   #     vmname: "{{ vmrequest.name }}"
+  - name: Check whether a "task_id" state var exists (state_var_exists)
+    manageiq_automate:
+      workspace: "{{ workspace }}"
+      state_var_exists:
+        attribute: "ansible_stats_vmname"
+      register: state_var_exists
+    - debug: msg="Result:{{ state_var_exists.value }}"

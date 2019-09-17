@@ -1,4 +1,4 @@
-- name: This playbook will register the system "{{ ansible_stats_vmname }}" on Satellite
+- name: "This playbook will register the system {{ ansible_stats_vmname }} on Satellite"
   hosts: "{{ ansible_stats_vmname }}"
   vars:
   - satserver: "sat.example.com"

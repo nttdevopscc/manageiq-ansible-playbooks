@@ -31,12 +31,11 @@
   - name: "Print the vmdb request"
     debug: msg="Result:{{ ansible_stats_vmname }}"
 
-   
-  - name: Check whether a "ansible_stats_vmname" state var exists (state_var_exists)
-    manageiq_automate:
-      workspace: "{{ workspace }}"
-      state_var_exists:
-        attribute: "vmname"
-    register: state_var
-      
-  - debug: msg="Result:{{ state_var.value }}"
+#  - name: Check whether a "ansible_stats_vmname" state var exists (state_var_exists)
+#    manageiq_automate:
+#      workspace: "{{ workspace }}"
+#      state_var_exists:
+#        attribute: "vmname"
+#    register: state_var
+#      
+#  - debug: msg="Result:{{ state_var.value }}"

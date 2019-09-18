@@ -6,8 +6,8 @@
   - manageiq_validate_certs: false
 
   roles:
-  - manageiq-core.manageiq-vmdb
-  - manageiq-core.manageiq-automate
+  - syncrou.manageiq-automate
+  - syncrou.manageiq-vmdb
 
 
   tasks:   

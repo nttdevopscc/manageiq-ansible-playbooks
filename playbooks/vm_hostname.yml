@@ -27,16 +27,24 @@
         options:
           hostname: "{{ vmrequest.options.vm_target_name }}.example.com"
 
-  - name: "Set a State Var"
+  - name: "Set a State Var for hostname"
     manageiq_automate:
       workspace: "{{ workspace }}"
       set_state_var:
         attribute: "ansible_stats_vmhostname"
         value: "{{ vmrequest.options.vm_target_name }}.example.com"
     register: ansible_stats_vmhostname
+    
+  - name: "Set a State Var for IP address"
+    manageiq_automate:
+      workspace: "{{ workspace }}"
+      set_state_var:
+        attribute: "ansible_stats_ipaddr"
+        value: "{{ vmrequest.options.ip_addr }}"
+    register: ansible_stats_ipaddr
 
-  - name: "Print the vmdb request"
-    debug: msg="Result:{{ ansible_stats_vmhostname }}"
+  #- name: "Print the vmdb request"
+  #  debug: msg="Result:{{ ansible_stats_vmhostname }}"
 
    
   - name: Check whether a "vmhostname" state var exists (state_var_exists)
@@ -47,3 +55,12 @@
     register: state_var
       
   - debug: msg="Result:{{ state_var.value }}"
+  
+  - name: Check whether a "ipaddr" state var exists (state_var_exists)
+    manageiq_automate:
+      workspace: "{{ workspace }}"
+      state_var_exists:
+        attribute: "ipaddr"
+    register: state_var_ip
+      
+  - debug: msg="Result:{{ state_var_ip.value }}"

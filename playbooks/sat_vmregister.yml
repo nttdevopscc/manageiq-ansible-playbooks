@@ -1,5 +1,5 @@
 - name: "This playbook will register the system {{ vmhostname }} on Satellite"
-  hosts: "{{ ipaddr }}"
+  hosts: "{{ vmhostname }}"
   vars:
   - satserver: "sat.example.com"
   - activationkey: "ak-Reg_To_Production"

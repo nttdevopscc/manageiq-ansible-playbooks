@@ -28,6 +28,14 @@
         value: "{{ vmrequest.options.vm_target_name }}"
     register: ansible_stats_vmname
 
+  - name: Update task with new Hostname information
+    manageiq_vmdb:
+      href: "{{ manageiq.request_task }}"
+      action: edit
+      data:
+        options:
+          hostname: "{{ vmrequest.options.vm_target_name }}.example.com"
+
   - name: "Print the vmdb request"
     debug: msg="Result:{{ ansible_stats_vmname }}"
 

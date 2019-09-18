@@ -1,5 +1,5 @@
 - name: "This playbook will register the system {{ ansible_stats_vmname }} on Satellite"
-  hosts: "{{ ansible_stats_vmname }}"
+  hosts: "{{ vmname }}"
   vars:
   - satserver: "sat.example.com"
   - activationkey: "ak-Reg_To_Production"

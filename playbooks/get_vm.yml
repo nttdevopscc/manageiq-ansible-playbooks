@@ -4,12 +4,6 @@
   connection: local
   vars:
   - manageiq_validate_certs: false
-  - manageiq_connection:
-        url: 'http://cfui.example.com:3000'
-        username: 'admin'
-        password: 'r3dh4t1!'
-        automate_workspace: 'automate_workspaces/'
-        manageiq_validate_certs: false
 
   roles:
   - manageiq-core.manageiq-vmdb

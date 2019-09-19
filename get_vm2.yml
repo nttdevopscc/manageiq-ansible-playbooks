@@ -1,5 +1,5 @@
 ---
-- name: "manageiq-vmdb role for inserting new vm name into the state machine"
+- name: "Getting info from a request and inserting new info in the state machine"
   hosts: localhost
   connection: local
   vars:
@@ -10,25 +10,27 @@
   - syncrou.manageiq-vmdb
 
 
-  tasks:   
+  tasks: 
+  #### manageiq-vmdb role #####
   - name: "Get a vmdb request"
     manageiq_vmdb:
       href: "{{ manageiq.request_task }}"
     register: vmrequest
           
-  - name: "Print the vmdb request"
+  - name: "Print the vmdb request info required"
     #debug: msg="{{ vmrequest }}"
     debug: var=vmrequest.options.vm_target_name
 
-  - name: Update task with new Hostname information
+  - name: "Update task with new Hostname information, will be needed to register the VM in Satellite"
     manageiq_vmdb:
       href: "{{ manageiq.request_task }}"
       action: edit
       data:
         options:
           hostname: "{{ vmrequest.options.vm_target_name }}.example.com"
-          
-  - name: "Set a State Var"
+  
+#### manageiq-automate role #####        
+  - name: "Set a vmname State Var, this vmname will be consumed in the PB that registers the VM in Satellite"
     manageiq_automate:
       workspace: "{{ workspace }}"
       set_state_var:
@@ -36,15 +38,6 @@
         value: "{{ vmrequest.options.vm_target_name }}"
     register: ansible_stats_vmname
 
-
   - name: "Print the vmdb request"
     debug: msg="Result:{{ ansible_stats_vmname }}"
 
-#  - name: Check whether a "ansible_stats_vmname" state var exists (state_var_exists)
-#    manageiq_automate:
-#      workspace: "{{ workspace }}"
-#      state_var_exists:
-#        attribute: "vmname"
-#    register: state_var
-#      
-#  - debug: msg="Result:{{ state_var.value }}"

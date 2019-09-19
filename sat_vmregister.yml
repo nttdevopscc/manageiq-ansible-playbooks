@@ -1,0 +1,20 @@
+- name: "This playbook will register the system {{ vmname }} on Satellite"
+  hosts: "{{ vmname }}"
+  vars:
+  - satserver: "sat.example.com"
+  - activationkey: "ak-Reg_To_Production"
+  - organization: "Example_com"
+
+  tasks:
+  - name: install Katello certificates
+    yum:
+      name: http://{{ satserver }}/pub/katello-ca-consumer-latest.noarch.rpm
+      state: present
+
+  - name: Register with activation key
+    redhat_subscription:
+      state: present
+      server_hostname: "{{ satserver }}"
+      org_id: "{{ organization }}"
+      activationkey: "{{ activationkey }}"
+      server_insecure: disable

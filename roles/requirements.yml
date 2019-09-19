@@ -1,0 +1,5 @@
+# from galaxy
+- src: syncrou.manageiq-vmdb
+- src: syncrou.manageiq-automate
+  version: v0.1.0
+

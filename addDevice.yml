@@ -1,0 +1,71 @@
+---
+- name: get next free IP
+  hosts: all
+  vars:
+  - phpipam_user: admin
+  - phpipam_password: "r3dh4t1!"
+  - phpipam_url: "https://ipam.example.com/api"
+  - manageiq_validate_certs: false
+  
+  roles:
+  - manageiq-core.manageiq-vmdb
+
+  tasks:
+  - name: print debug variables
+    debug:
+      var: "{{ item }}"
+      verbosity: 1
+    with_items:
+    - phpipam_user
+    - phpipam_password
+    - phpipam_url
+ 
+  - name: Get a vmdb object
+    manageiq_vmdb:
+      href: "{{ manageiq.service }}"
+    register: service
+    
+  - name: Print the service details
+    debug:
+      msg: "Services object is {{ service }}"
+
+  - name: log into phpIPAM
+    uri:
+      url: "{{ phpipam_url }}/ansible/user/"
+      user: "{{ phpipam_user }}"
+      password: "{{ phpipam_password }}"
+      method: POST
+      status_code: 200
+      validate_certs: no
+      force_basic_auth: yes
+    register: login
+
+  - name: dump login result
+    debug:
+      var: login
+      verbosity: 1
+
+  - name: dump host details
+    debug:
+      var: "{{ item }}"
+    with_items:
+    - hostname
+    - ip_addr 
+
+  - name: create new device
+    uri:
+      url: "{{ phpipam_url }}/ansible/devices/"
+      headers:
+        token: "{{ login.json.data.token }}"
+      status_code: 201
+      method: POST
+      validate_certs: no
+      body_format: json
+      body: '
+        {
+            "hostname": "{{ ansible_stats_hostname }}",
+            "ip": "{{ ansible_stats_ip_addr }}",
+            "type": "7",
+            "description": null,
+            "sections": "3"
+        }'

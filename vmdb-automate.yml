@@ -1,0 +1,43 @@
+---
+- name: "Getting info from a request and inserting new info in the state machine"
+  hosts: localhost
+  connection: local
+  vars:
+  - manageiq_validate_certs: false
+
+  roles:
+  - syncrou.manageiq-automate
+  - syncrou.manageiq-vmdb
+
+
+  tasks: 
+  #### manageiq-vmdb role #####
+  - name: "Get a vmdb request"
+    manageiq_vmdb:
+      href: "{{ manageiq.request_task }}"
+    register: vmrequest
+          
+  - name: "Print the vmdb request info required"
+    #debug: msg="{{ vmrequest }}"
+    debug: var=vmrequest.options.vm_target_name
+
+  - name: "Update task with new Hostname information, will be needed to register the VM in Satellite"
+    manageiq_vmdb:
+      href: "{{ manageiq.request_task }}"
+      action: edit
+      data:
+        options:
+          hostname: "{{ vmrequest.options.vm_target_name }}.example.com"
+  
+#### manageiq-automate role #####        
+  - name: "Set a vmname State Var, this vmname will be consumed in the PB that registers the VM in Satellite"
+    manageiq_automate:
+      workspace: "{{ workspace }}"
+      set_state_var:
+        attribute: "ansible_stats_vmname"
+        value: "{{ vmrequest.options.vm_target_name }}"
+    register: ansible_stats_vmname
+
+  - name: "Print the vmdb request"
+    debug: msg="Result:{{ ansible_stats_vmname }}"
+

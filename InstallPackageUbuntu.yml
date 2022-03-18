@@ -1,0 +1,33 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+   
+  tasks:
+    - name: "Update packages and upgrade"
+      apt:
+        update_cache: true
+        upgrade: dist
+        force_apt_get: true
+    - name: "Install {{ package_name }}"
+      apt:
+        name: "{{ package_name }}"
+        update_cache: yes
+        state: latest
+    - name: "Create document root"
+      file:
+        path: "/var/www/html"
+        state: directory
+        owner: "www-data"
+        mode: 0755
+#    - name: "Enable Apache on Firewall"
+#      ufw:
+#        rule: allow
+#        port: 80
+#        proto: tcp
+    - name: "restart {{ package_name }} service"
+      service:
+        name: "{{ package_name }}"
+        state: restarted
+
+##### Tested by William using ManageIQ to call Ansible AWX to install Apache2 package on target machine ####
